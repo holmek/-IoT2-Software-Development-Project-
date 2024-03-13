@@ -14,7 +14,7 @@ voltage_divider = ADC(Pin(34))
 voltage_divider.atten(ADC.ATTN_11DB)
 
 # DHT11 - https://docs.micropython.org/en/latest/esp8266/tutorial/dht.html
-digital_humidity_and_temperature_sensor = dht.DHT11(Pin(14))
+digital_humidity_and_temperature_sensor = dht.DHT11(Pin(15))
 
 # MPU-6050 - https://microcontrollerslab.com/micropython-mpu-6050-esp32-esp8266/
 i2c_interface = I2C(scl=Pin(22), sda=Pin(21)) 
