@@ -9,6 +9,9 @@ from mq135 import MQ135
 import uasyncio as asyncio
 from micropython_rfm9x import RFM9x as LoRa
 
+# Batteri variablerne
+voltage_divider = ADC(Pin(34))
+voltage_divider.atten(ADC.ATTN_11DB)
 
 # DHT11 - https://docs.micropython.org/en/latest/esp8266/tutorial/dht.html
 digital_humidity_and_temperature_sensor = dht.DHT11(Pin(14))
