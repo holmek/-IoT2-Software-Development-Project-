@@ -44,7 +44,7 @@ async def get_sensor_data():
         
     # Dette er variablen sensor_data som indeholder overnævnte datapunkter med lora hvert 1 minut
     sensor_data = f"SG52A Temperature: {temperature}, Humidity: {humidity}, Gyro: {gyro_data}, Air Quality: {corrected_ppm}"
-    rfm9x.send(bytes(sensor_data, "utf-8"))
+    LoRa.send(bytes(sensor_data, "utf-8"))
     await asyncio.sleep(60)  
         
 async def main():
