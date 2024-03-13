@@ -1,12 +1,14 @@
 import dht
 import machine
-from machine import Pin, I2C, SPI
+from machine import Pin
+from machine import I2C
+from machine import SPI
 from time import sleep
 import mpu6050
 from MQ135 import MQ135
 import uasyncio as asyncio
-from micropython_rfm9x import
-from machine import SPI, Pin
+from micropython_rfm9x import RFM9x as LoRa
+
 
 # DHT11 - https://docs.micropython.org/en/latest/esp8266/tutorial/dht.html
 digital_humidity_and_temperature_sensor = dht.DHT11(Pin(14))
@@ -41,7 +43,7 @@ async def get_sensor_data():
         gyro_data = "no fall detected"
         
     # Dette er variablen sensor_data som indeholder overnævnte datapunkter med lora hvert 1 minut
-    sensor_data = f"Temperature: {temperature}, Humidity: {humidity}, Gyro: {gyro_data}, Air Quality: {corrected_ppm}"
+    sensor_data = f"SG52A Temperature: {temperature}, Humidity: {humidity}, Gyro: {gyro_data}, Air Quality: {corrected_ppm}"
     rfm9x.send(bytes(sensor_data, "utf-8"))
     await asyncio.sleep(60)  
         
