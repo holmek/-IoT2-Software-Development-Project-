@@ -5,7 +5,7 @@ from machine import I2C
 from machine import SPI
 from time import sleep
 import mpu6050
-from MQ135 import MQ135
+from mq135 import MQ135
 import uasyncio as asyncio
 from micropython_rfm9x import RFM9x as LoRa
 
