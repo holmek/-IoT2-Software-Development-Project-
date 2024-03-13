@@ -34,6 +34,9 @@ async def get_sensor_data():
     temperature = digital_humidity_and_temperature_sensor.temperature()
     humidity = digital_humidity_and_temperature_sensor.humidity()
     corrected_ppm = air_quality_sensor.get_corrected_ppm(temperature, humidity)
+
+    # Dette er batteri data som bliver indsamlet
+    percentage = int(((sum(voltage_divider.read() for _ in range(120)) / 120) - 800) / 10.6)
     
     # Dette er MPU-6050 fald data som bliver indsamlet
     acceleration_z = accelerometer.get_values()["AcZ"]
@@ -43,7 +46,7 @@ async def get_sensor_data():
         gyro_data = "no fall detected"
         
     # Dette er variablen sensor_data som indeholder overnævnte datapunkter med lora hvert 1 minut
-    sensor_data = f"SG52A Temperature: {temperature}, Humidity: {humidity}, Gyro: {gyro_data}, Air Quality: {corrected_ppm}"
+    sensor_data = f"SG52A Temperature: {temperature}, Humidity: {humidity}, Gyro: {gyro_data}, Air Quality: {corrected_ppm}, Battery: {percentage}"
     LoRa.send(bytes(sensor_data, "utf-8"))
     await asyncio.sleep(60)  
         
