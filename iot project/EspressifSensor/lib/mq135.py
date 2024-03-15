@@ -17,7 +17,7 @@ class MQ135(object):
     # The load resistance on the board
     RLOAD = 10.0
     # Calibration resistance at atmospheric CO2 level
-    RZERO = 76.63
+    RZERO = -15.14158
     # Parameters for calculating ppm of CO2 from sensor resistance
     PARA = 116.6020682
     PARB = 2.769034857
@@ -66,7 +66,7 @@ class MQ135(object):
 
     def get_ppm(self):
         """Returns the ppm of CO2 sensed (assuming only CO2 in the air)"""
-        return self.PARA * math.pow((self.get_resistance()/ self.RZERO), -self.PARB)
+        return self.PARA * (self.get_resistance()/ self.RZERO)**-self.PARB
 
     def get_corrected_ppm(self, temperature, humidity):
         """Returns the ppm of CO2 sensed (assuming only CO2 in the air)
