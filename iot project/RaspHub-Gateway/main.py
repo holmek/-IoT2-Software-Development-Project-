@@ -1,4 +1,3 @@
-  GNU nano 5.4                                                                                                                 mqtt_pub.py                                                                                                                           
 import digitalio
 import board
 import busio
