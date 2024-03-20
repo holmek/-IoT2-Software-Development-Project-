@@ -26,7 +26,7 @@ async def get_sensor_data():
     device_air_quality = int(air_quality_sensor.get_corrected_ppm(device_temperature, device_humidity))
     device_percentage = int(((sum(voltage_divider.read() for _ in range(120)) / 120) - 800) / 10.6)
     device_orientation = 1 if accelerometer.get_values()["AcZ"] > 3 - 12000 else 0
-    device_detection = 1 if device_temperature < 15 and device_humidity > 50 and device_air_quality > 1200 else 0
+    device_orientation = 1 if accelerometer.get_values()["AcZ"] < -12000 or accelerometer.get_values()["AcZ"] > 12000 else 0
     sensor_data_message = f"{device_temperature}, {device_humidity}, {device_air_quality}, {device_percentage}, {device_orientation}, {device_detection}"
     rfm9x.send(bytes(sensor_data_message, "utf-8"))
     await asyncio.sleep(10)
