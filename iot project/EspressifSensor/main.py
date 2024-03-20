@@ -26,12 +26,31 @@ async def get_sensor_data():
     device_air_quality = int(air_quality_sensor.get_corrected_ppm(device_temperature, device_humidity))
     device_percentage = int(((sum(voltage_divider.read() for _ in range(120)) / 120) - 800) / 10.6)
     device_orientation = 1 if accelerometer.get_values()["AcZ"] < -12000 or accelerometer.get_values()["AcZ"] > 12000 else 0
+    device_detection = 1 if device_temperature > 45 and device_humidity < 20 and device_air_quality > 5000 else 0
     sensor_data_message = f"{device_temperature}, {device_humidity}, {device_air_quality}, {device_percentage}, {device_orientation}, {device_detection}"
     rfm9x.send(bytes(sensor_data_message, "utf-8"))
-    await asyncio.sleep(10)
+    print(sensor_data_message)
+    await asyncio.sleep(20)
+    
+async def get_sensor_data_fire():
+    while True:
+        digital_humidity_and_temperature_sensor.measure()
+        device_temperature = digital_humidity_and_temperature_sensor.temperature()
+        device_humidity = digital_humidity_and_temperature_sensor.humidity()
+        device_air_quality = int(air_quality_sensor.get_corrected_ppm(device_temperature, device_humidity))
+        device_percentage = int(((sum(voltage_divider.read() for _ in range(120)) / 120) - 1655) / 6.6)
+        device_orientation = 1 if accelerometer.get_values()["AcZ"] < -12000 or accelerometer.get_values()["AcZ"] > 12000 else 0
+        device_detection = 1 if device_temperature > 45 and device_humidity < 20 and device_air_quality > 5000 else 0
+        sensor_data_message = f"{device_temperature}, {device_humidity}, {device_air_quality}, {device_percentage}, {device_orientation}, {device_detection}"
+        if device_orientation == 1:
+            rfm9x.send(bytes(sensor_data_message, "utf-8"))
+            print(sensor_data_message)
 
 async def main():
-    while True:
-        await get_sensor_data()
+    await asyncio.gather(
+        get_sensor_data(),
+        get_sensor_data_fire()
+    )
 
 asyncio.run(main())
+
