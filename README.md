@@ -1,10 +1,6 @@
 # IoT2-Software-Development-Project 
-## Beskrivelse
 
-Dette projekt fokuserer på at integrere Azure-tjenester med Flask-frameworket til IoT-applikationer. Projektet omfatter forskellige komponenter, herunder Espressif og en Raspberry Pi-baseret gateway.
-
-**Azure Flask:**
-Azure Flask bruges til at vise data fra Espressif-sensorerne. Flask håndterer webserveren, der præsenterer sensordataene for brugerne.
+Projektwr fokuserer på at integrere Azure med Flask-frameworket - Projektet omfatter forskellige komponenter, herunder Espressif og en Raspberry Pi-baseret gateway.
 
 **Kommunikationsmetoder:**
 - **MQTT fra Hub til Azure:**
@@ -17,13 +13,13 @@ Azure Flask bruges til at vise data fra Espressif-sensorerne. Flask håndterer w
 Projektet indeholder følgende mapper:
 
 1. **Azure-Flask:**
-   Denne mappe indeholder koden til Flask-applikationen, der viser data fra Espressif-sensorerne i Azure-miljøet.
+   Denne mappe indeholder koden til Flask-applikationen, der viser data fra Espressif-sensorerne i Azure.
 
 2. **Espressif-Sensor:**
-   Denne mappe indeholder koden til Espressif ESP8266/ESP32-baserede sensorer. Sensorerne opsamler data og sender dem til gatewayen til yderligere behandling.
+   Denne mappe indeholder koden til Espressif. Sensorerne opsamler data og sender dem til gatewayen.
 
 3. **RaspHub-Gateway:**
-   I denne mappe findes koden til Raspberry Pi-baserede gatewayen. Gatewayen modtager data fra sensorerne, behandler dem og sender dem videre til Azure-tjenesterne til lagring og analyse.
+   I denne mappe findes koden til Raspberry Pi-baserede gatewayen. Gatewayen modtager data fra sensorerne og sender dem videre til Azure.
 
 ## Licens
 
