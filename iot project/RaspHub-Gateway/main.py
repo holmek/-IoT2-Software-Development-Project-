@@ -13,7 +13,7 @@ rfm9x = adafruit_rfm9x.RFM9x(spi, CS, RESET, RADIO_FREQ_MHZ)
 rfm9x = adafruit_rfm9x.RFM9x(spi, CS, RESET, RADIO_FREQ_MHZ, baudrate=1000000)
 
 while True:
-    received_data = rfm9x.receive()
-    if received_data is not None:
-        received_string = str(received_data, "utf-8")
-        publish.single("sg5-2a", received_string, hostname="mqtt.eclipseprojects.io")
+    sensor_data_message = rfm9x.receive()
+    if sensor_data_message is not None:
+        sensor_data_string = str(received_data, "utf-8")
+        publish.single("sg5-2a", sensor_data_string, hostname="mqtt.eclipseprojects.io")
