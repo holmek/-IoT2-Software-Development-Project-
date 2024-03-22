@@ -25,4 +25,4 @@ Projektet indeholder følgende mapper:
 
 Dette projekt er licenseret under [MIT licensen](LICENSE). Se LICENSE-filen for flere detaljer.
 
-(project-picture.png)
+![Projekt Billede](project-picture.png)
