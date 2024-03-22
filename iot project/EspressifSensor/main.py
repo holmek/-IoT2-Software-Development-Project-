@@ -17,7 +17,7 @@ RESET = Pin(14, Pin.OUT)
 CS = Pin(5, Pin.OUT)
 spi = SoftSPI(baudrate=1000000, polarity=0, phase=0, bits=8, firstbit=0, sck=Pin(18), mosi=Pin(23), miso=Pin(19))
 RADIO_FREQ_MHZ = 868.0
-rfm9x = RFM9x(spi, CS, RESET, RADIO_FREQ_MHZ)
+LoRa = RFM9x(spi, CS, RESET, RADIO_FREQ_MHZ)
 
 async def get_sensor_data():
     digital_humidity_and_temperature_sensor.measure()
@@ -28,7 +28,7 @@ async def get_sensor_data():
     device_orientation = 1 if accelerometer.get_values()["AcZ"] < -12000 or accelerometer.get_values()["AcZ"] > 12000 else 0
     device_detection = 1 if device_temperature > 45 and device_humidity < 20 and device_air_quality > 5000 else 0
     sensor_data_message = f"{device_temperature}, {device_humidity}, {device_air_quality}, {device_percentage}, {device_orientation}, {device_detection}"
-    rfm9x.send(bytes(sensor_data_message, "utf-8"))
+    LoRa.send(bytes(sensor_data_message, "utf-8"))
     print(sensor_data_message)
     await asyncio.sleep(20)
     
@@ -43,7 +43,7 @@ async def get_sensor_data_fire():
         device_detection = 1 if device_temperature > 45 and device_humidity < 20 and device_air_quality > 5000 else 0
         sensor_data_message = f"{device_temperature}, {device_humidity}, {device_air_quality}, {device_percentage}, {device_orientation}, {device_detection}"
         if device_orientation == 1:
-            rfm9x.send(bytes(sensor_data_message, "utf-8"))
+            LoRa.send(bytes(sensor_data_message, "utf-8"))
             print(sensor_data_message)
 
 async def main():
@@ -53,4 +53,3 @@ async def main():
     )
 
 asyncio.run(main())
-
