@@ -24,3 +24,5 @@ Projektet indeholder følgende mapper:
 ## Licens
 
 Dette projekt er licenseret under [MIT licensen](LICENSE). Se LICENSE-filen for flere detaljer.
+
+(project-picture.png)
