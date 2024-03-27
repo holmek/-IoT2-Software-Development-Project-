@@ -3,10 +3,10 @@
 Projektwr fokuserer på at integrere Azure med Flask-frameworket - Projektet omfatter forskellige komponenter, herunder Espressif og en Raspberry Pi-baseret gateway.
 
 **Kommunikationsmetoder:**
-- **MQTT fra Hub til Azure:**
-    Data fra gatewayen sendes til Azure ved hjælp af MQTT-protokollen.
-- **LoRa fra Espressif til Hub:**
-    Espressif-sensorerne bruger LoRa-teknologi til at sende data til gatewayen.
+- **MQTT -> Azure:**
+    Data fra gatewayen sendes til Azure ved hjælp af MQTT.
+- **LoRa -> Hub:**
+    Espressif-sensorerne bruger LoRa til at sende data til gatewayen.
 
 ## Mapper
 
