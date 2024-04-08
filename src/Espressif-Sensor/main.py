@@ -24,7 +24,7 @@ async def get_sensor_data():
     device_temperature = digital_humidity_and_temperature_sensor.temperature()
     device_humidity = digital_humidity_and_temperature_sensor.humidity()
     device_air_quality = int(air_quality_sensor.get_corrected_ppm(device_temperature, device_humidity))
-    device_percentage = int(((sum(voltage_divider.read() for _ in range(120)) / 120) - 1735) / 7)
+    device_percentage = int(((sum(voltage_divider.read() for _ in range(128)) / 128) - 1731) / 7)
     device_orientation = 1 if accelerometer.get_values()["AcZ"] < -12000 or accelerometer.get_values()["AcZ"] > 12000 else 0
     device_detection = 1 if device_temperature > 45 and device_humidity < 20 and device_air_quality > 5000 else 0
     sensor_data_message = f"{device_temperature}, {device_humidity}, {device_air_quality}, {device_percentage}, {device_orientation}, {device_detection}"
